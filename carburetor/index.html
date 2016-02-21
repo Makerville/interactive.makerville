@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title> Carburetor Lamp | Makerville</title>
+  <meta name="description" content="Control a RGB lamp set inside a bike carburetor">
+  <meta name="author" content="Makerville">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="../images/favicon.png">
+<script type="text/javascript" 
+                        src="colorpicker.js"></script>
+                <style type="text/css">
+                  #picker { width: 200px; height: 200px }
+                  #slide { width: 30px; height: 200px }
+                </style>
+</head>
+<body style="background-color:#303F9F">
+<a href="../">Home</a>
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+      <div class="one-half column" style="margin-top: 25%">
+		<h3>Carburetor Lamp</h3>
+        <p>To control your Carburetor Lamp, use the following sliders to set the RGB colors and then press Light Up!</p>
+		
+		
+      </div>
+    </div>
+<div class="row">
+<div class="column">
+		<div id="picker"></div><br/>
+                <div id="slide"></div>
+                <script type="text/javascript">
+                  ColorPicker(
+                    document.getElementById('slide'),
+                    document.getElementById('picker'),
+                    function(hex, hsv, rgb) {
+                      document.body.style.backgroundColor = hex;
+                    });
+                </script>
+<form>
+<input type="submit" value="Light Up!" style="background-color:#FFFFFF">	
+</form>
+
+</div>
+</div>
+
+</div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>
