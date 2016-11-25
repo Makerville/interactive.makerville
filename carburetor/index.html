@@ -25,14 +25,12 @@
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="../images/favicon.png">
-<script type="text/javascript" 
-                        src="colorpicker.js"></script>
-                <style type="text/css">
-                  #picker { width: 200px; height: 200px }
-                  #slide { width: 30px; height: 200px }
-                </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
 </head>
+
 <body style="background-color:#303F9F">
+
 <a href="../">Home</a>
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -45,26 +43,69 @@
 		
       </div>
     </div>
-<div class="row">
-<div class="column">
-		<div id="picker"></div><br/>
-                <div id="slide"></div>
-                <script type="text/javascript">
-                  ColorPicker(
-                    document.getElementById('slide'),
-                    document.getElementById('picker'),
-                    function(hex, hsv, rgb) {
-                      document.body.style.backgroundColor = hex;
-                    });
-                </script>
-<form>
-<input type="submit" value="Light Up!" style="background-color:#FFFFFF">	
-</form>
-
-</div>
 </div>
 
+<div class="container">
+    <div class="row">
+      <div class="one-half column" style="margin-top: 25%">
+
+<input type="range" id="red" value="90">
+<br/>
+<button onclick="sendRed()" style="width: 180px; color: white">Send Red</button>
+<br/>
+<input type="range" id="green" value="90">
+<br/>
+<button onclick="sendGreen()" style="width: 180px;color: white">Send Green</button>
+<br/>
+<input type="range" id="blue" value="90">
+<br/>
+<button onclick="sendBlue()" style="width: 180px;color: white">Send Blue</button>
+<br/>
+
+
+      </div>
+    </div>
 </div>
+
+    <p id="demo"></p>
+
+    <script>
+    function sendRed() 
+    {
+	var x = document.getElementById("red").value;
+	document.getElementById("demo").innerHTML = parseInt((x*255)/100);
+	document.body.style.backgroundColor = "red";
+
+	$.post("https://api.particle.io/v1/devices/38003a000947343337373738/analogwrite?access_token=b1dd08a09b317c891b9b156b153cb7fa0d990c59",
+	       {
+                args:"D1"+parseInt((x*255)/100)
+               });
+    }
+
+function sendGreen() {
+    var x = document.getElementById("green").value;
+    document.getElementById("demo").innerHTML = parseInt((x*255)/100);
+    document.body.style.backgroundColor = "green";
+
+    $.post("https://api.particle.io/v1/devices/38003a000947343337373738/analogwrite?access_token=b1dd08a09b317c891b9b156b153cb7fa0d990c59",
+	   {
+               args:"D2"+parseInt((x*255)/100)
+           });
+
+
+}
+
+function sendBlue() {
+    var x = document.getElementById("blue").value;
+    document.getElementById("demo").innerHTML = parseInt((x*255)/100);
+    document.body.style.backgroundColor = "blue";
+    $.post("https://api.particle.io/v1/devices/38003a000947343337373738/analogwrite?access_token=b1dd08a09b317c891b9b156b153cb7fa0d990c59",
+	   {
+               args:"D0"+parseInt((x*255)/100)
+           });
+}
+
+</script>
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
