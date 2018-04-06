@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="UTF-8"> 
+  <title>IPL</title>
+  <meta name="description" content="Tasty Treat <3 IPL">
+  <meta name="author" content="Interactive Makerville">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/normalize.css">
+	<script src="jquery.min.js"></script>
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- <link rel="icon" type="image/ico" href="img/favicon.ico"> -->
+
+</head>
+<body style="background-color:#303F9F">
+    <div class="container">
+    
+    <div class="row">
+      <div class="one-half column" style="margin-top: 25%" id="area">
+        <h3>Service Workers</h3>
+	<button data-rel="img/1.jpg">Click Me</button>
+
+      </div>
+    </div>
+  </div>
+    <script src="service-worker.js"></script>
+    <script>
+    $("button").click(function () {
+    var imgUrl = $(this).data('rel');
+    $("#area").html("<img src='" + imgUrl + "' alt='description' />");
+    });
+    </script>
+
+</body>
+</html>
+
