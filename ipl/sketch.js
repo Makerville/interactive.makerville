@@ -10,6 +10,7 @@ var shot = 1;
 
 function setup()
 {
+  randomSeed(12);
   img_logo = loadImage("./tt.png");
   img_4= loadImage("./4.png");
   img_6= loadImage("./6.png");
@@ -62,7 +63,7 @@ function keyPressed() {
   {
   } else
   {
-    shot=int(random(0, 6));
+    shot=int(random([0, 1, 2, 3, 4, 6]));
     logEvent(shot);
     time=millis();
   }
