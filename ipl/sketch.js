@@ -68,6 +68,16 @@ function keyPressed() {
   }
 }
 
+function mousePressed() {
+  if (millis()-time<=wait2)
+  {
+  } else
+  {
+    shot=int(random(0, 6));
+    time=millis();
+  }
+}
+
 function displayScore(s) {
   console.log("score: "+s);
   s = s || '1'
