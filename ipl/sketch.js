@@ -31,12 +31,12 @@ function setup()
 function draw()
 {
   background(69, 191, 186);
-  image(img_cc, width*1/5, height/4);
+  image(img_cc, width*1/6, height/4);
   textFont(font);
   textAlign(CENTER);
   fill(0);
   textSize(80);
-  //text("SCORE", width*2/3, height/2-100);
+  //text("SCORE", width*4/5, height/2-100);
   textSize(120);
   if (millis()-time>=wait)
   {
@@ -45,7 +45,6 @@ function draw()
     text("Ready ?", width/2, height/6);
   } else
   {  
-    console.log(score[shot]);
     displayScore(score[shot]);
     textSize(100);
     fill(245,231,77);
@@ -64,50 +63,46 @@ function keyPressed() {
   } else
   {
     shot=int(random(0, 6));
+    logEvent(shot);
     time=millis();
   }
 }
 
 function mousePressed() {
-  if (millis()-time<=wait2)
-  {
-  } else
-  {
-    shot=int(random(0, 7));
-    time=millis();
-  }
+  keyPressed();
 }
 
 function displayScore(s) {
-  console.log("score: "+s);
   s = s || '1'
+  console.log("w: "+ width + "    height: " + height)
+  var textX = width*4/5;
+  var textY =  height/2+50;
+
   switch(s) {
   case '0': 
     // println("0");  // Does not execute
     background(69, 191, 186);
-    
     textFont(font);
     textSize(210);
     fill("#7E1B1B");
     textSize(200);
     fill(245,231,77);
-    text(score[shot], width*2/3, height/2+50);
+    text(score[shot], textX, textY);
     
-    image(img_balla, width*1/5, height/4);
+    image(img_balla, width*1/8, height/4);
     break;
   case '1': 
     // println("1");  // Does not execute
     background(69, 191, 186);
-    
     textFont(font);
     textSize(210);
     fill("#7E1B1B");
     textSize(200);
     fill(245,231,77);
-    text(score[shot], width*2/3, height/2+50);
+    text(score[shot], textX, textY);
     
     
-    image(img_spin, width*1/5, height/4);
+    image(img_spin, width*1/8, height/4);
     break;
   case '2': 
     background(69, 191, 186);
@@ -117,9 +112,9 @@ function displayScore(s) {
     fill("#7E1B1B");
     textSize(200);
     fill(245,231,77);
-    text(score[shot], width*2/3, height/2+50);
+    text(score[shot], textX, textY);
     
-    image(img_game, width*1/5, height/4);
+    image(img_game, width*1/8, height/4);
     break;
   case '3': 
     // println("3");  // Does not execute
@@ -130,9 +125,9 @@ function displayScore(s) {
     fill("#7E1B1B");
     textSize(200);
     fill(245,231,77);
-    text(score[shot], width*2/3, height/2+50);
+    text(score[shot], textX, textY);
     
-    image(img_leg, width*1/5, height/4);
+    image(img_leg, width*1/8, height/4);
     break;
   case '4': 
     background(69, 191, 186);
@@ -141,8 +136,8 @@ function displayScore(s) {
     fill("#7E1B1B");
     textSize(200);
     fill(245,231,77);
-    // text(score[shot], width*2/3, height/2+50);
-    image(img_4, width*1/5+80, height/4);
+    // text(score[shot], textX, textY);
+    image(img_4, width*1/4+80, height/4);
     break;
   case '6': 
     // println("6");  // Does not execute
@@ -152,14 +147,25 @@ function displayScore(s) {
     fill("#7E1B1B");
     textSize(200);
     fill(245,231,77);
-    // text(score[shot], width*2/3, height/2+50);
-    image(img_6, width*1/5+120, height/4);
+    // text(score[shot], textX, textY);
+    image(img_6, width*1/4+120, height/4);
     break;
   default:             // Default executes if the case labels
     background(69, 191, 186);
     textFont(font);
     // println("Ready ?");   // don't match the switch parameter
-    image(img_balla, width*1/5, height/4);
+    image(img_balla, width*1/8, height/4);
     break;
   }
+}
+
+function logEvent(data) {
+  $.ajax({
+    type: "POST",
+    url: 'https://ipl-logger.glitch.me/record',
+    dataType: 'json',
+    data: JSON.stringify({score: data}),
+    contentType: "application/json; charset=utf-8",
+    success: function(resp, status) {console.log(resp)},
+  });
 }
