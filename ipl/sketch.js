@@ -74,7 +74,6 @@ function mousePressed() {
 
 function displayScore(s) {
   s = s || '1'
-  console.log("w: "+ width + "    height: " + height)
   var textX = width*4/5;
   var textY =  height/2+50;
 
@@ -166,6 +165,6 @@ function logEvent(data) {
     dataType: 'json',
     data: JSON.stringify({score: data}),
     contentType: "application/json; charset=utf-8",
-    success: function(resp, status) {console.log(resp)},
+    success: function(resp, status) {},
   });
 }
