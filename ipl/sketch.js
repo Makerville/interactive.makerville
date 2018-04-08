@@ -5,7 +5,7 @@ var font;
 var font2;
 var img_logo, img_4, img_6, img_balla, 
   img_cc, img_game, img_leg, img_spin;
-var score= {0: '0', 1: '1', 2: '2', 3: '3', 4: '4', 5: '4', 6: '6'};
+var score= {0: '0', 1: '1', 2: '2', 3: '3', 4: '4', 5: '4', 6: '6', 7: '3'};
 var shot = 1;
 
 function setup()
@@ -73,7 +73,7 @@ function mousePressed() {
   {
   } else
   {
-    shot=int(random(0, 6));
+    shot=int(random(0, 7));
     time=millis();
   }
 }
