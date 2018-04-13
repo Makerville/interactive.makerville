@@ -27,6 +27,10 @@ function setup()
   font=loadFont("./DAGGERSQUARE.otf");
 }
 
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
 
 
 function draw()
