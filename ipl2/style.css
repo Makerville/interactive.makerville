@@ -1,0 +1,10 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  display: block;
+  vertical-align: top;
+
+}
+body::-webkit-scrollbar {
+  display: none;
+}
