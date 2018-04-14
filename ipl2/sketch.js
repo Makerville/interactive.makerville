@@ -87,10 +87,17 @@ function keyPressed() {
       shot = 5;
     }
     ball(shot);
+    logEvent(shot);    
     calcShot();
     time = millis();
   }
 }
+
+
+function mousePressed() {
+  keyPressed();
+}
+
 
 function displayScore(s) {
   textFont(font);
@@ -189,4 +196,15 @@ function calcShot() {
   //  if (y<height/3) {
   //    shot =2;
   //  }
+}
+
+function logEvent(data) {
+  $.ajax({
+    type: "POST",
+    url: 'https://ipl-logger.glitch.me/record',
+    dataType: 'json',
+    data: JSON.stringify({score: data, version: 'v2'}),
+    contentType: "application/json; charset=utf-8",
+    success: function(resp, status) {},
+  });
 }
