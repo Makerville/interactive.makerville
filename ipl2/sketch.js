@@ -12,6 +12,7 @@ var img_logo,
   img_spin,
   img_pitch;
 var score = { 0: "0", 1: "1", 2: "2", 3: "3", 4: "4", 5: "4", 6: "6", 7: "6" };
+var xlinevars = [-40, 20, 10, 0, -10, -20, -40];
 var shot = 0;
 //ball variables
 var x, y, xline, yline, aa, rr, z, r, a;
@@ -44,12 +45,10 @@ function draw() {
   textFont(font);
   textAlign(CENTER);
   fill(0);
-  textSize(80);
-  textSize(120);
   if (millis() - time >= wait) {
-    textSize(100);
-    fill(245, 231, 77);
-    text("Ready ?", width / 2, height / 8);
+    textSize(70);
+    fill("#EFF029");
+    text("Ready ?", width / 2 + 10, height - height / 8);
     image(img_cc, width / 2, height * 2 / 5);
   } else {
     displayScore(score[shot]);
@@ -57,42 +56,38 @@ function draw() {
 
     //ball
     push();
-    // translate(x, y, z);
+    translate(x, y, z);
     fill(245, 231, 77);
     stroke(220, 2, 20);
     if (r > 10) {
       // sphere(r);
       strokeWeight(0);
-      fill('red');
-      ellipse(x, y, r, r);
+      fill("red");
+      ellipse(0, 0, r, r);
     } else {
       calcShot();
     }
     pop();
 
-    textSize(100);
+    textSize(70);
     fill(245, 231, 77);
-    text("#IPL 2018", width / 2, height / 8);
+    text("#IPL 2018", width / 2, height - height / 15);
   }
 
   fill(255);
   textSize(20);
-  text("mkrv.in", 100, height - 50);
+  text("Interactive by mkrv.in", width / 4, height - 10);
 }
 
 function keyPressed() {
   if (millis() - time <= wait2) {
   } else {
-    ball();
-    calcShot();
-    if (yline < -13) {
+    shot = int(random(0, 6));
+    if (shot == 4) {
       shot = 5;
-    } else if (yline < -4) {
-      shot = 4;
-    } else {
-      shot = int(random(0, 3));
     }
-
+    ball(shot);
+    calcShot();
     time = millis();
   }
 }
@@ -107,43 +102,77 @@ function displayScore(s) {
   switch (s) {
     case "0":
       text(score[shot], width * 2 / 3, height / 2 + 50);
-      image(img_balla, width * 1 / 5, height / 4);
+      image(img_balla, width * 1 / 5, height / 8);
       break;
     case "1":
       text(score[shot], width * 2 / 3, height / 2 + 50);
-      image(img_spin, width * 1 / 5, height / 4);
+      image(img_spin, width * 1 / 5, height / 8);
       break;
     case "2":
       text(score[shot], width * 2 / 3, height / 2 + 50);
-      image(img_game, width * 1 / 5, height / 4);
+      image(img_game, width * 1 / 5, height / 8);
       break;
     case "3":
       textSize(210);
       text(score[shot], width * 2 / 3 + 5, height / 2 + 50);
-      image(img_leg, width * 1 / 5, height / 4);
+      image(img_leg, width * 1 / 5, height / 8);
       break;
     case "4":
-      image(img_4, width * 1 / 5 + 120, height / 4);
+      image(img_4, width * 1 / 5 + 120, height / 8);
       break;
     case "6":
-      image(img_6, width * 1 / 5 + 120, height / 4);
+      image(img_6, width * 1 / 5 + 120, height / 8);
       break;
     default:
       // Default executes if the case labels
       textFont(font);
-      image(img_balla, width * 1 / 5, height / 4);
+      image(img_balla, width * 1 / 5, height / 8);
       break;
   }
 }
 
-function ball() {
-  xline = random(-5, 5) / 2;
-  yline = random(-20, -2);
-  rr = 0.9;
+function ball(shot) {
+  switch (shot) {
+    case 0:
+      yline = 2;
+      xline = xlinevars[int(random(0, 7))];
+      z = -5;
+      break;
+    case 1:
+      yline = 5;
+      xline = xlinevars[int(random(0, 7))];
+      z = -5;
+      break;
+    case 2:
+      yline = 15;
+      xline = xlinevars[int(random(0, 7))];
+      z = -5;
+      break;
+    case 3:
+      yline = -2;
+      xline = xlinevars[int(random(0, 7))];
+      z = -5;
+      break;
+    case 4:
+      yline = random(-5, -20);
+      xline = xlinevars[int(random(0, 7))];
+      z = -5;
+      break;
+    case 6:
+      yline = random(-30, -50);
+      xline = xlinevars[int(random(0, 7))];
+      z = -5;
+      break;
+    case 5:
+      yline = random(-30, -50);
+      xline = xlinevars[int(random(0, 7))];
+      z = -5;
+      break;
+  }
+  rr = 0.7;
   x = width / 2;
   y = height * 4 / 5;
-  z = 100;
-  r = 50;
+  r = 30;
   time = millis();
 }
 
