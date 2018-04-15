@@ -41,7 +41,7 @@ function windowResized() {
 function draw() {
   background(69, 191, 186);
   imageMode(CENTER);
-  image(img_pitch, width/2 , height/2 );
+  image(img_pitch, width, height);
   textFont(font);
   textAlign(CENTER);
   fill(0);
