@@ -1,6 +1,6 @@
 var time;
 var wait = 2000;
-var wait2 = 500;
+var wait2 = 2500;
 var font, font2;
 var img_logo,
   img_4,
