@@ -1,6 +1,6 @@
 var time;
 var wait = 2000;
-var wait2 = 1500;
+var wait2 = 600;
 var font, font2;
 var img_logo,
   img_4,
@@ -41,7 +41,7 @@ function windowResized() {
 function draw() {
   background(69, 191, 186);
   imageMode(CENTER);
-  image(img_pitch, width , height );
+  image(img_pitch, width/2 , height/2 );
   textFont(font);
   textAlign(CENTER);
   fill(0);
@@ -99,112 +99,4 @@ function mousePressed() {
 }
 
 
-function displayScore(s) {
-  textFont(font);
-  background(69, 191, 186);
-  image(img_pitch, width / 2, height / 2);
-  textSize(210);
-  fill(245, 231, 77);
-  imageMode(CORNER);
-  switch (s) {
-    case "0":
-      text(score[shot], width * 2 / 3, height / 2 + 50);
-      image(img_balla, width * 1 / 5, height / 8);
-      break;
-    case "1":
-      text(score[shot], width * 2 / 3, height / 2 + 50);
-      image(img_spin, width * 1 / 5, height / 8);
-      break;
-    case "2":
-      text(score[shot], width * 2 / 3, height / 2 + 50);
-      image(img_game, width * 1 / 5, height / 8);
-      break;
-    case "3":
-      textSize(210);
-      text(score[shot], width * 2 / 3 + 5, height / 2 + 50);
-      image(img_leg, width * 1 / 5, height / 8);
-      break;
-    case "4":
-      image(img_4, width * 1 / 5 + 120, height / 8);
-      break;
-    case "6":
-      image(img_6, width * 1 / 5 + 120, height / 8);
-      break;
-    default:
-      // Default executes if the case labels
-      textFont(font);
-      image(img_balla, width * 1 / 5, height / 8);
-      break;
-  }
-}
-
-function ball(shot) {
-  switch (shot) {
-    case 0:
-      yline = 2;
-      xline = xlinevars[int(random(0, 7))];
-      z = -5;
-      break;
-    case 1:
-      yline = 5;
-      xline = xlinevars[int(random(0, 7))];
-      z = -5;
-      break;
-    case 2:
-      yline = 15;
-      xline = xlinevars[int(random(0, 7))];
-      z = -5;
-      break;
-    case 3:
-      yline = -2;
-      xline = xlinevars[int(random(0, 7))];
-      z = -5;
-      break;
-    case 4:
-      yline = random(-5, -20);
-      xline = xlinevars[int(random(0, 7))];
-      z = -5;
-      break;
-    case 6:
-      yline = random(-30, -50);
-      xline = xlinevars[int(random(0, 7))];
-      z = -5;
-      break;
-    case 5:
-      yline = random(-30, -50);
-      xline = xlinevars[int(random(0, 7))];
-      z = -5;
-      break;
-  }
-  rr = 0.7;
-  x = width / 2;
-  y = height * 4 / 5;
-  r = 30;
-  time = millis();
-}
-
-function ballDirection() {
-  aa = aa + 10;
-  a = a + 0.01;
-  r = r - rr;
-  x = x + xline;
-  y = y + yline;
-  z = z - 0.78;
-}
-
-function calcShot() {
-  //  if (y<height/3) {
-  //    shot =2;
-  //  }
-}
-
-function logEvent(data) {
-  $.ajax({
-    type: "POST",
-    url: 'https://ipl-logger.glitch.me/record',
-    dataType: 'json',
-    data: JSON.stringify({score: data, version: 'v2'}),
-    contentType: "application/json; charset=utf-8",
-    success: function(resp, status) {},
-  });
-}
+function displayScore(s
