@@ -12,7 +12,7 @@ var img_logo,
   img_spin,
   img_pitch;
 var score = { 0: "0", 1: "1", 2: "2", 3: "3", 4: "4", 5: "4", 6: "6", 7: "6" };
-var xlinevars = [-40, 20, 10, 0, -10, -20, -40];
+var xlinevars = [10, 5, 3, 0, -2, -8, -10];
 var shot = 0;
 //ball variables
 var x, y, xline, yline, aa, rr, z, r, a;
@@ -82,9 +82,9 @@ function draw() {
 function keyPressed() {
   if (millis() - time <= wait2) {
   } else {
-    shot = int(random(0, 6));
-    if (shot == 4) {
-      shot = 5;
+    shot = int(random(0, 7));
+    if (shot == 5) {
+      shot = 4;
     }
     ball(shot);
     logEvent(shot);    
@@ -139,8 +139,8 @@ function displayScore(s) {
 function ball(shot) {
   switch (shot) {
     case 0:
-      yline = 2;
-      xline = xlinevars[int(random(0, 7))];
+      yline = 20;
+      xline = xlinevars[int(random(0, 7))] + 5;
       z = -5;
       break;
     case 1:
@@ -149,7 +149,7 @@ function ball(shot) {
       z = -5;
       break;
     case 2:
-      yline = 15;
+      yline = 10;
       xline = xlinevars[int(random(0, 7))];
       z = -5;
       break;
@@ -159,17 +159,17 @@ function ball(shot) {
       z = -5;
       break;
     case 4:
-      yline = random(-5, -20);
+      yline = random(-5, -10);
       xline = xlinevars[int(random(0, 7))];
       z = -5;
       break;
     case 6:
-      yline = random(-30, -50);
+      yline = random(-5, -15);
       xline = xlinevars[int(random(0, 7))];
       z = -5;
       break;
     case 5:
-      yline = random(-30, -50);
+      yline = random(-5, -10);
       xline = xlinevars[int(random(0, 7))];
       z = -5;
       break;
@@ -177,17 +177,26 @@ function ball(shot) {
   rr = 0.7;
   x = width / 2;
   y = height * 4 / 5;
-  r = 30;
+  r = 20;
   time = millis();
+  console.log("x: " + xline + " , y: " + yline);
+  if(xline + yline < 5){
+    xline = 5
+  }
 }
 
 function ballDirection() {
   aa = aa + 10;
   a = a + 0.01;
-  r = r - rr;
   x = x + xline;
   y = y + yline;
   z = z - 0.78;
+
+  if (millis() - time <= (  wait/4)) {
+    r = r + rr;
+  } else {
+    r = r - rr;
+  }
 }
 
 function calcShot() {
