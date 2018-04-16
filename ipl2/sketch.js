@@ -1,6 +1,6 @@
 var time;
 var wait = 2000;
-var wait2 = 1500;
+var wait2 = 500;
 var font, font2;
 var img_logo,
   img_4,
@@ -41,7 +41,7 @@ function windowResized() {
 function draw() {
   background(69, 191, 186);
   imageMode(CENTER);
-  image(img_pitch, width, height);
+  image(img_pitch, width / 2, height / 2);
   textFont(font);
   textAlign(CENTER);
   fill(0);
@@ -99,11 +99,8 @@ function mousePressed() {
 }
 
 
-
 function displayScore(s) {
   textFont(font);
-  background(69, 191, 186);
-  image(img_pitch, width / 2, height / 2);
   textSize(210);
   fill(245, 231, 77);
   imageMode(CORNER);
